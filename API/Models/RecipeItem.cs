@@ -2,7 +2,7 @@
 
 namespace API.Models
 {
-    public class ToDoItem
+    public class RecipeItem
     {
         public long Id { get; set; }
         public string Name { get; set; }
