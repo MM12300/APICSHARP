@@ -19,8 +19,12 @@ namespace API.Controllers
         {
             _context = context;
         }
-
+        
         // GET: api/RecipeItems
+        /// <summary>
+        /// Get the list of recipes in the cookbook
+        /// </summary>
+        /// <returns>Return a list of recipes</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
@@ -42,8 +46,12 @@ namespace API.Controllers
         }
 
         // PUT: api/RecipeItems/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// Modify a recipe in the cookbook
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="recipeItem"></param>
+        /// <returns>Returns a 400 HTTP code in case of bad request, a 404 HTTP code if the recipe is not found, or a 200 HTTP code if the request is a sucess</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecipeItem(long id, RecipeItem recipeItem)
         {
@@ -74,8 +82,11 @@ namespace API.Controllers
         }
 
         // POST: api/RecipeItems
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        /// <summary>
+        /// Add a recipe to the cookbook
+        /// </summary>
+        /// <param name="recipeItem"></param>
+        /// <returns>Returns a 201 HTTP code if the creation is a success</returns>
         [HttpPost]
         public async Task<ActionResult<RecipeItem>> PostRecipeItem(RecipeItem recipeItem)
         {
@@ -86,6 +97,11 @@ namespace API.Controllers
         }
 
         // DELETE: api/RecipeItems/5
+        /// <summary>
+        /// Delete a recipe in the cookbook
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns the deleted recipe</returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<RecipeItem>> DeleteRecipeItem(long id)
         {
