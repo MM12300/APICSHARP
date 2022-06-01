@@ -2,11 +2,10 @@
 
 namespace API.Models
 {
-    public class ToDoItem
+    public class ToDoItemDto
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public bool IsComplete { get; set; }
-        private string SecretId { get; set; }
     }
 }
