@@ -1,0 +1,16 @@
+//BOOTSTRAP CHANGE
+h3{
+  margin:0;
+}
+
+section{
+  padding:10px;
+}
+section:nth-child(odd){
+  background-color : #F9F3EE;
+}
+section:nth-child(even){
+  background-color : #CCF3EE;
+}
+
+
