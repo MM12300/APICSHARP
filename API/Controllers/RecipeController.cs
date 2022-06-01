@@ -11,48 +11,48 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ToDoItemsController : ControllerBase
+    public class RecipeController : ControllerBase
     {
-        private readonly ToDoContext _context;
+        private readonly RecipeContext _context;
 
-        public ToDoItemsController(ToDoContext context)
+        public RecipeController(RecipeContext context)
         {
             _context = context;
         }
 
-        // GET: api/ToDoItems
+        // GET: api/RecipeItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ToDoItem>>> GetToDoItems()
+        public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
-            return await _context.ToDoItems.ToListAsync();
+            return await _context.RecipeItems.ToListAsync();
         }
 
-        // GET: api/ToDoItems/5
+        // GET: api/RecipeItems/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ToDoItem>> GetToDoItem(long id)
+        public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
+            var recipeItem = await _context.RecipeItems.FindAsync(id);
 
-            if (toDoItem == null)
+            if (recipeItem == null)
             {
                 return NotFound();
             }
 
-            return toDoItem;
+            return recipeItem;
         }
 
-        // PUT: api/ToDoItems/5
+        // PUT: api/RecipeItems/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutToDoItem(long id, ToDoItem toDoItem)
+        public async Task<IActionResult> PutRecipeItem(long id, RecipeItem recipeItem)
         {
-            if (id != toDoItem.Id)
+            if (id != recipeItem.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(toDoItem).State = EntityState.Modified;
+            _context.Entry(recipeItem).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ToDoItemExists(id))
+                if (!RecipeItemExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // POST: api/ToDoItems
+        // POST: api/RecipeItems
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ToDoItem>> PostToDoItem(ToDoItem toDoItem)
+        public async Task<ActionResult<RecipeItem>> PostRecipeItem(RecipeItem recipeItem)
         {
-            _context.ToDoItems.Add(toDoItem);
+            _context.RecipeItems.Add(recipeItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetToDoItem), new { id = toDoItem.Id }, toDoItem);
+            return CreatedAtAction(nameof(GetRecipeItem), new { id = recipeItem.Id }, recipeItem);
         }
 
-        // DELETE: api/ToDoItems/5
+        // DELETE: api/RecipeItems/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ToDoItem>> DeleteToDoItem(long id)
+        public async Task<ActionResult<RecipeItem>> DeleteRecipeItem(long id)
         {
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
-            if (toDoItem == null)
+            var recipeItem = await _context.RecipeItems.FindAsync(id);
+            if (recipeItem == null)
             {
                 return NotFound();
             }
 
-            _context.ToDoItems.Remove(toDoItem);
+            _context.RecipeItems.Remove(recipeItem);
             await _context.SaveChangesAsync();
 
-            return toDoItem;
+            return recipeItem;
         }
 
-        private bool ToDoItemExists(long id)
+        private bool RecipeItemExists(long id)
         {
-            return _context.ToDoItems.Any(e => e.Id == id);
+            return _context.RecipeItems.Any(e => e.Id == id);
         }
     }
 }
