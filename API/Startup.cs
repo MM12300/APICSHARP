@@ -35,14 +35,13 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
-                    Description = "A simple example ASP.NET Core Web API",
+                    Title = "Best recipes API",
+                    Description = "An ASP.NET Core Web API regarding Recipes",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Shayne Boyer",
-                        Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
+                        Name = "Raphael Perles, Marie Vendran, Mathieu Madejski, Cyrielle Touton",
+                        Email = "coucoucnous@gmail.com",
                     },
                     License = new OpenApiLicense
                     {
