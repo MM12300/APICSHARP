@@ -13,6 +13,7 @@ namespace API.Models
         public int Time { get; set; }
         public int Score { get; set; }
         public int Budget { get; set; }
+        public string Recipe { get; set; }
         
     }
 }

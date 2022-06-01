@@ -110,7 +110,14 @@ namespace API.Controllers
         {
             Id = recipeItem.Id,
             Name = recipeItem.Name,
-            IsComplete = recipeItem.IsComplete
+            Description = recipeItem.Description,
+            UrlPicture = recipeItem.UrlPicture,
+            Ingredients = recipeItem.Ingredients,
+            Severity = recipeItem.Severity,
+            Time = recipeItem.Time,
+            Score = recipeItem.Score,
+            Budget = recipeItem.Budget,
+            Recipe = recipeItem.Recipe
         };
     }
 }
