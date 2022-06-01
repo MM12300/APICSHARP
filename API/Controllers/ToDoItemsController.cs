@@ -82,7 +82,7 @@ namespace API.Controllers
             _context.ToDoItems.Add(toDoItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetToDoItem", new { id = toDoItem.Id }, toDoItem);
+            return CreatedAtAction(nameof(GetToDoItem), new { id = toDoItem.Id }, toDoItem);
         }
 
         // DELETE: api/ToDoItems/5
