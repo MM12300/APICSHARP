@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SdkTL5VLCmnrDuMXapeVklLN/2OxEGQWo7k1QIwCjUfF6f3ZWJKvmA5aIfzkBhMjiGR0CyT7jH8ynxfnRStXAQ==",
+  "dgSpecHash": "TaTvJBDxNGQVlaAhhdn09dGXd6ru+VIoYAjY8ZifZm+Akknwv0DNpRqd+YeBE0RoufWiOmvw9Y1is67D/kiE1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nergg\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\nergg\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

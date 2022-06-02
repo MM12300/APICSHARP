@@ -19,7 +19,6 @@ namespace API.Controllers
         {
             _context = context;
             var recipe1 = new RecipeItem();
-            recipe1.Id = 1;
             recipe1.Name = "First recipe";
             context.Add(recipe1);
             context.SaveChanges();

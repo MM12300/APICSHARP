@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\API.csproj": {}
+    "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\API.csproj": {
+    "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\API.csproj",
+        "projectPath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\API.csproj",
         "packagesPath": "C:\\Users\\nergg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\C#API\\APIC#-tuto\\API\\obj\\",
+        "outputPath": "C:\\Users\\nergg\\Desktop\\IPI 2021-2022\\CSHARPAPI\\APICSHARP-tuto\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nergg\\AppData\\Roaming\\NuGet\\NuGet.Config"
