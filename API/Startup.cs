@@ -28,7 +28,9 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<RecipeContext>(opt => opt.UseInMemoryDatabase("RecipesList"));
+            services.AddDbContext<IngredientContext>(opt => opt.UseInMemoryDatabase("IngredientList"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -75,6 +77,14 @@ namespace API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api v1");
                 //c.RoutePrefix = string.Empty;
+            });
+            
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
             
             
