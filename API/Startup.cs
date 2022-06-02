@@ -41,6 +41,7 @@ namespace API
             */
             services.AddDbContext<RecipeContext>(opt => opt.UseInMemoryDatabase("RecipesList"));
             services.AddDbContext<IngredientContext>(opt => opt.UseInMemoryDatabase("IngredientList"));
+            services.AddDbContext<StepContext>(opt => opt.UseInMemoryDatabase("StepList"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

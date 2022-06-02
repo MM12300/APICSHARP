@@ -14,7 +14,7 @@ namespace API.Models
         public int Duration { get; set; }
         public int Score { get; set; }
         public int Budget { get; set; }
-        public string Recipe { get; set; }
+        public List<Step> Recipe { get; set; }
         
     }
 }
