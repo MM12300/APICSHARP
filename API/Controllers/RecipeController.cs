@@ -22,6 +22,7 @@ namespace API.Controllers
             recipe1.Id = 1;
             recipe1.Name = "First recipe";
             context.Add(recipe1);
+            context.SaveChanges();
         }
         
         // GET: api/RecipeItems
