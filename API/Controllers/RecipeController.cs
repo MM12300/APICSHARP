@@ -10,7 +10,6 @@ using System.Web.Http.Cors;
 
 namespace API.Controllers
 {
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     [Route("api/[controller]")]
     [ApiController]
     public class RecipeController : ControllerBase
