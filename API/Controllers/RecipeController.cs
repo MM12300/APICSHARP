@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -50,6 +51,7 @@ namespace API.Controllers
         /// Get the list of recipes in the cookbook
         /// </summary>
         /// <returns>Return a list of recipes</returns>
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
@@ -58,6 +60,7 @@ namespace API.Controllers
         }
 
         // GET: api/RecipeItems/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
@@ -78,6 +81,7 @@ namespace API.Controllers
         /// <param name="id"></param>
         /// <param name="recipeItem"></param>
         /// <returns>Returns a 400 HTTP code in case of bad request, a 404 HTTP code if the recipe is not found, or a 200 HTTP code if the request is a sucess</returns>
+        [AllowAnonymous]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecipeItem(long id, RecipeItem recipeItem)
         {
@@ -113,6 +117,7 @@ namespace API.Controllers
         /// </summary>
         /// <param name="recipeItem"></param>
         /// <returns>Returns a 201 HTTP code if the creation is a success</returns>
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<RecipeItem>> PostRecipeItem(RecipeItem recipeItem)
         {
@@ -128,6 +133,7 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Returns the deleted recipe</returns>
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         public async Task<ActionResult<RecipeItem>> DeleteRecipeItem(long id)
         {

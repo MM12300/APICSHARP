@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using API.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -28,17 +31,24 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            /*
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAnyOrigin", builder =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
                 {
-                    // Allow "Access-Control-Allow-Origin: *" header
-                    builder.AllowAnyOrigin();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
                 });
-            });
-            */
+            services.AddMvc();
+            services.AddControllers();
+            
+            services.AddCors();
             services.AddDbContext<RecipeContext>(opt => opt.UseInMemoryDatabase("RecipesList"));
             services.AddDbContext<IngredientContext>(opt => opt.UseInMemoryDatabase("IngredientList"));
             services.AddDbContext<StepContext>(opt => opt.UseInMemoryDatabase("StepList"));
@@ -77,7 +87,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
+
+            app.UseAuthentication();
             
             app.UseCors(builder =>
             {
@@ -91,7 +102,11 @@ namespace API
             //app.UseCors();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapControllers();
+            });
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
