@@ -18,6 +18,10 @@ namespace API.Controllers
         public RecipeController(RecipeContext context)
         {
             _context = context;
+            var recipe1 = new RecipeItem();
+            recipe1.Id = 1;
+            recipe1.Name = "First recipe";
+            context.Add(recipe1);
         }
         
         // GET: api/RecipeItems
