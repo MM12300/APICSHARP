@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from "@angular/common/http";
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { StarsComponent } from './stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     NavbarComponent,
     FooterComponent,
     RecipesListComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,

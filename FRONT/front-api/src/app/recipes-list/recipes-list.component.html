@@ -1,27 +1,30 @@
 <div *ngIf="recipes !== undefined; else noRecipes">
-  <h4>Your recipes</h4>
+  <h3>Your recipes</h3>
   <table class="table">
     <thead>
     <tr>
-      <th scope="col"></th>
-      <th scope="col">Nom de la Recette</th>
+      <th scope="col">Recette</th>
       <th scope="col">Durée</th>
       <th scope="col">Score</th>
-      <th scope="col">Description</th>
       <th scope="col">Budget</th>
-      <th scope="col">Recette</th>
+      <th scope="col">Description</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let recipe of recipes">
-      <td><img src="{{recipe.urlPicture}}" alt="recipeImage"></td>
-      <td><a routerLink="/recipe/{{recipe.id}}">
+      <td class="col-3">
+        <img src="{{recipe.urlPicture}}" alt="recipeImage">
+        <a routerLink="/recipe/{{recipe.id}}">
         {{recipe.name}}
-      </a></td>
-      <td>{{recipe.duration}}</td>
-      <td>{{recipe.score}}</td>
-      <td>{{recipe.description}}</td>
-      <td>{{recipe.budget}}</td>
+      </a>
+      </td>
+      <td class="col-1">{{recipe.duration}} min</td>
+      <td class="col-1">
+      <app-stars [recipe]="recipe"></app-stars>
+      </td>
+      <td>{{recipe.budget}} €</td>
+      <td class="col-7">{{recipe.description}}</td>
+
     </tbody>
   </table>
 </div>
