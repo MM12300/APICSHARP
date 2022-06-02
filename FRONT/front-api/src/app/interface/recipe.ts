@@ -3,7 +3,7 @@ export interface RecipeItem{
   name : string,
   description: string,
   urlPicture: string,
-  ingredients : Ingredient[],
+  ingredients : Ingredient[]|null,
   difficulty: number,
   duration: number,
   score: number,
