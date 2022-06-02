@@ -65,6 +65,14 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
 
             app.UseAuthorization();
 
@@ -79,13 +87,7 @@ namespace API
                 //c.RoutePrefix = string.Empty;
             });
             
-            app.UseCors(builder =>
-            {
-                builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
-            });
+
             
             
         }
