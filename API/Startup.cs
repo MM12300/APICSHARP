@@ -30,6 +30,7 @@ namespace API
         {
             services.AddCors();
             services.AddDbContext<RecipeContext>(opt => opt.UseInMemoryDatabase("RecipesList"));
+            services.AddDbContext<IngredientContext>(opt => opt.UseInMemoryDatabase("IngredientList"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

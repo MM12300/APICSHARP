@@ -32,14 +32,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
-            return await _context.RecipeItems.ToListAsync();
+            return await _context.RecipeItems.Include(i=>i.Ingredients).ToListAsync();
         }
 
         // GET: api/RecipeItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
-            var recipeItem = await _context.RecipeItems.FindAsync(id);
+            var recipeItem = await _context.RecipeItems.Where(i=>i.Id == id).Include(i => i.Ingredients).FirstAsync();
 
             if (recipeItem == null)
             {
@@ -125,5 +125,19 @@ namespace API.Controllers
         {
             return _context.RecipeItems.Any(e => e.Id == id);
         }
+
+        private static RecipeItem ItemTo(RecipeItem recipeItem) => new RecipeItem
+        {
+            Id = recipeItem.Id,
+            Name = recipeItem.Name,
+            Description = recipeItem.Description,
+            UrlPicture = recipeItem.UrlPicture,
+            Ingredients = recipeItem.Ingredients.ToList(),
+            Difficulty = recipeItem.Difficulty,
+            Duration = recipeItem.Duration,
+            Score = recipeItem.Score,
+            Budget = recipeItem.Budget,
+            Recipe = recipeItem.Recipe
+        };
     }
 }
