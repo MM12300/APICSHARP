@@ -77,7 +77,7 @@ namespace API
 
             app.UseRouting();
             
-            /*
+            
             app.UseCors(builder =>
             {
                 builder
@@ -85,9 +85,9 @@ namespace API
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
-*/
+
             //app.UseCors("AllowAnyOrigin");
-            app.UseCors();
+            //app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
