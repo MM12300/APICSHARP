@@ -19,25 +19,6 @@ namespace API.Controllers
             return Ok($"Hi {currentUser.GivenName}, you are an {currentUser.Role}");
         }
 
-
-        [HttpGet("Sellers")]
-        [Authorize(Roles = "Seller")]
-        public IActionResult SellersEndpoint()
-        {
-            var currentUser = GetCurrentUser();
-
-            return Ok($"Hi {currentUser.GivenName}, you are a {currentUser.Role}");
-        }
-
-        [HttpGet("AdminsAndSellers")]
-        [Authorize(Roles = "Administrator,Seller")]
-        public IActionResult AdminsAndSellersEndpoint()
-        {
-            var currentUser = GetCurrentUser();
-
-            return Ok($"Hi {currentUser.GivenName}, you are an {currentUser.Role}");
-        }
-
         [HttpGet("Public")]
         public IActionResult Public()
         {
