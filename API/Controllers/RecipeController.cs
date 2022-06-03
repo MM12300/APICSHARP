@@ -27,7 +27,7 @@ namespace API.Controllers
         /// Get the list of recipes in the cookbook
         /// </summary>
         /// <returns>Return a list of recipes</returns>
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
