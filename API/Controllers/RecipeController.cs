@@ -59,9 +59,9 @@ namespace API.Controllers
                 recipe2.Duration = 90;
                 recipe2.Score = 4;
                 recipe2.Budget = 30;
-                recipe2.Recipe = "STEP 1 : Heat the oven to 180C / 160C fan/ gas 4.Oil three 20cm round cake tins and line the bases and sides with baking parchment(if you don’t have three tins, cook the batter in batches). Whisk the milk and vinegar together in a jug – the milk should curdle slightly.Set aside.\n" +
+                recipe2.Recipe = "STEP 1 : Heat the oven to 180C / 160C fan/ gas 4.Oil three 20cm round cake tins and line the bases and sides with baking parchment(if you donï¿½t have three tins, cook the batter in batches). Whisk the milk and vinegar together in a jug ï¿½ the milk should curdle slightly.Set aside.\n" +
                     "STEP 2 : Whisk the sugar, oil and vanilla extract together in a bowl, then whisk in the yogurt, making sure to break down any sugar lumps. Pour in the soured milk and mix well.\n" +
-                    "STEP 3 : Sift the flour, cocoa powder, baking powder, bicarbonate of soda and ½ tsp salt into a separate bowl and stir well to combine.Gradually whisk the wet ingredients into the dry until you have a smooth batter, but be careful not to over - mix.";
+                    "STEP 3 : Sift the flour, cocoa powder, baking powder, bicarbonate of soda and ï¿½ tsp salt into a separate bowl and stir well to combine.Gradually whisk the wet ingredients into the dry until you have a smooth batter, but be careful not to over - mix.";
 
                 // RECIPE 3
                 var recipe3 = new RecipeItem();
@@ -86,7 +86,8 @@ namespace API.Controllers
         }
 
         // GET: api/RecipeItems/5
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
@@ -143,6 +144,7 @@ namespace API.Controllers
         /// </summary>
         /// <param name="recipeItem"></param>
         /// <returns>Returns a 201 HTTP code if the creation is a success</returns>
+        //[Authorize(Roles = "Administrator")]
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<RecipeItem>> PostRecipeItem(RecipeItem recipeItem)
