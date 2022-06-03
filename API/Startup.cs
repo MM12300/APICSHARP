@@ -61,7 +61,7 @@ namespace API
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Raphael Perles, Marie Vendran, Mathieu Madejski, Cyrielle Touton",
+                        Name = "Raphael Perles, Marie Vendran, Matthieu Madejski, Cyrielle Touton",
                         Email = "coucoucnous@gmail.com",
                     },
                     License = new OpenApiLicense
