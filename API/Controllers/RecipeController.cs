@@ -15,42 +15,12 @@ namespace API.Controllers
     public class RecipeController : ControllerBase
     {
         private readonly RecipeContext _context;
-        private int counter = 0;
 
         public RecipeController(RecipeContext context)
         {
             _context = context;
-            if (counter == 0)
-            { 
-                var recipe1 = new RecipeItem();
-                recipe1.Name = "Easy lemon layer cake";
-                recipe1.Description = "Indulge in a slice of lemon cake for afternoon tea. With lovely light sponge layers, a citrus zing offsets the rich and creamy soft cheese icing";
-                recipe1.UrlPicture = "https://images.unsplash.com/photo-1598795164852-d2b5472d8bbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
-                List<Ingredient> ingredients = new List<Ingredient>();
-                ingredients.Add(new Ingredient() { Name = "unsalted butter", Quantity = 225 });
-                ingredients.Add(new Ingredient() { Name = "caster sugar", Quantity = 225 });
-                ingredients.Add(new Ingredient() { Name = "eggs", Quantity = 4 });
-                ingredients.Add(new Ingredient() { Name = "self-raising flour", Quantity = 225 });
-                ingredients.Add(new Ingredient() { Name = "natural yogurt", Quantity = 75 });
-                ingredients.Add(new Ingredient() { Name = "lemons, zested", Quantity = 3 });
-                recipe1.Ingredients = ingredients;
-                recipe1.Difficulty = 2;
-                recipe1.Duration = 185;
-                recipe1.Score = 5;
-                recipe1.Budget = 50;
-                List<Step> recipeStep = new List<Step>();
-                recipeStep.Add(new Step() { StepId = 1, Instruction = "Heat the oven to 180C / 160C fan/ gas 4 and line the base of two 20cm sandwich tins with baking parchment. Beat the butter and sugar together for 3 mins using an electric whisk until smooth and fluffy.Add the eggs, one at a time, beating well between each addition and scraping down the sides of the bowl. Fold in the flour and baking powder until well incorporated, then fold in the yogurt, vanilla and lemon zest.Divide between the tins and bake for 30 - 35 mins until golden and a skewer inserted into the middles comes out clean." });
-                recipeStep.Add(new Step() { StepId = 2, Instruction = "Meanwhile, make the drizzle.Tip the sugar, lemon juice and 100ml water into a small pan set over a medium heat and stir until dissolved.Add the lemon zest, bring to the boil and simmer for 2 - 3 mins until the zest has softened and the liquid is syrupy.Remove the zest to a sheet of baking parchment using a slotted spoon, and remove the syrup from the heat." });
-                recipeStep.Add(new Step() { StepId = 3, Instruction = "Leave the sponges to cool for 10 mins in the tins, then pour over the warm drizzle.Leave to cool completely." });
-                recipeStep.Add(new Step() { StepId = 4, Instruction = "For the icing, beat the butter and icing sugar together using an electric whisk for 4 - 5 mins until smooth, scraping down the sides of the bowl as you go.Add the vanilla and soft cheese and beat for 4 mins more until thick and creamy.Don’t worry if it doesn’t look thick at first – it will loosen, then thicken again as you beat it." });
-                recipeStep.Add(new Step() { StepId = 5, Instruction = "Remove the cooled sponges from the tins.Spoon the icing into a piping bag fitted with a star nozzle.Put one sponge on a cake stand or serving plate, and pipe just under half the icing around the edge using a circular motion for a wavy effect.Pipe a little more icing over the empty middle(this doesn’t need to be neat) and smooth with the back of a spoon.Chill for 45 mins - 1 hr until set.Top with the second sponge, then pipe eight blobs of icing around the edge at regular intervals, leaving a gap between each.Spoon the candied lemon zest into each gap, then serve." });
-                recipe1.Recipe = recipeStep;
-                context.Add(recipe1);
-                context.SaveChanges();
-                counter++;
-            }
-
         }
+
         
         // GET: api/RecipeItems
         /// <summary>
@@ -61,8 +31,25 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
-            return await _context.RecipeItems.Include(i => i.Ingredients).Include(s=>s.Recipe).ToListAsync();
-            //return await _context.RecipeItems.Include(i=>i.Ingredients).ToListAsync();
+            var recipeItem = await _context.RecipeItems.FindAsync(1L);
+            if (recipeItem is null)
+            {
+                var recipe1 = new RecipeItem();
+                recipe1.Name = "Easy lemon layer cake";
+                recipe1.Description = "Indulge in a slice of lemon cake for afternoon tea. With lovely light sponge layers, a citrus zing offsets the rich and creamy soft cheese icing";
+                recipe1.UrlPicture = "https://images.unsplash.com/photo-1598795164852-d2b5472d8bbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
+                recipe1.Ingredients = "unsalted butter : 225g, caster sugar : 225g, eggs : 4, self-raising flour : 225g, natural yogurt : 75g, lemons, zested : 3";
+                recipe1.Difficulty = 2;
+                recipe1.Duration = 185;
+                recipe1.Score = 5;
+                recipe1.Budget = 50;
+                recipe1.Recipe = "STEP 1 : Heat the oven to 180C / 160C fan/ gas 4 and line the base of two 20cm sandwich tins with baking parchment. Beat the butter and sugar together for 3 mins using an electric whisk until smooth and fluffy.Add the eggs, one at a time, beating well between each addition and scraping down the sides of the bowl. Fold in the flour and baking powder until well incorporated, then fold in the yogurt, vanilla and lemon zest.Divide between the tins and bake for 30 - 35 mins until golden and a skewer inserted into the middles comes out clean.\n" +
+                    "STEP 2 : Meanwhile, make the drizzle.Tip the sugar, lemon juice and 100ml water into a small pan set over a medium heat and stir until dissolved.Add the lemon zest, bring to the boil and simmer for 2 - 3 mins until the zest has softened and the liquid is syrupy.Remove the zest to a sheet of baking parchment using a slotted spoon, and remove the syrup from the heat.\n" +
+                    "STEP 3 : Leave the sponges to cool for 10 mins in the tins, then pour over the warm drizzle.Leave to cool completely.";
+                _context.Add(recipe1);
+                _context.SaveChanges();
+            }
+            return await _context.RecipeItems.ToListAsync();
         }
 
         // GET: api/RecipeItems/5
@@ -70,7 +57,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
-            var recipeItem = await _context.RecipeItems.Where(i=>i.Id == id).Include(i => i.Ingredients).Include(s => s.Recipe).FirstAsync();
+            var recipeItem = await _context.RecipeItems.Where(i=>i.Id == id).FirstAsync();
 
             if (recipeItem == null)
             {
@@ -166,12 +153,12 @@ namespace API.Controllers
             Name = recipeItem.Name,
             Description = recipeItem.Description,
             UrlPicture = recipeItem.UrlPicture,
-            Ingredients = recipeItem.Ingredients.ToList(),
+            Ingredients = recipeItem.Ingredients,
             Difficulty = recipeItem.Difficulty,
             Duration = recipeItem.Duration,
             Score = recipeItem.Score,
             Budget = recipeItem.Budget,
-            Recipe = recipeItem.Recipe.ToList()
+            Recipe = recipeItem.Recipe
         };
     }
 }
