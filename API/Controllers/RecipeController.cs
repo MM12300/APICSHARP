@@ -27,7 +27,7 @@ namespace API.Controllers
         /// Get the list of recipes in the cookbook
         /// </summary>
         /// <returns>Return a list of recipes</returns>
-        [Authorize(Roles = "Administrator")]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeItem>>> GetRecipeItems()
         {
@@ -87,7 +87,7 @@ namespace API.Controllers
 
         // GET: api/RecipeItems/5
         //[AllowAnonymous]
-        [Authorize(Roles = "Administrator")]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeItem>> GetRecipeItem(long id)
         {
@@ -145,7 +145,7 @@ namespace API.Controllers
         /// <param name="recipeItem"></param>
         /// <returns>Returns a 201 HTTP code if the creation is a success</returns>
         //[Authorize(Roles = "Administrator")]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public async Task<ActionResult<RecipeItem>> PostRecipeItem(RecipeItem recipeItem)
         {
